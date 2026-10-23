@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Highlights from "./components/Highlights";
 import Landing from "./components/Landing";
 import Nav from "./components/Nav";
@@ -8,6 +9,7 @@ function App() {
       <Nav />
       <Landing />
       <Highlights />
+      <Featured />
     </div>
   );
 }
