@@ -5,7 +5,8 @@ import { books } from "../data.js";
 
 const Featured = () => {
   console.log(books);
-   return (
+  console.log();
+  return (
     <section id="features">
       <div className="container">
         <div className="row">
@@ -13,7 +14,7 @@ const Featured = () => {
             Featured <span className="purple">Books</span>
           </h2>
           <div className="books">
-            {books.filter((book) => book.rating === 5).slice(0, 4)}
+            {}
             <Book />
             <Book />
             <Book />
