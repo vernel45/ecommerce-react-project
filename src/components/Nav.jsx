@@ -1,15 +1,15 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import LibraryLogo from "../assets/Library.svg"
+import LibraryLogo from "../assets/Library.svg";
 
 const Nav = () => {
-  const openMenu = () => {
-  document.body.classList.add("menu--open");
-};
+  function openMenu() {
+    document.body.classList += "menu--open";
+  }
 
-const closeMenu = () => {
-  document.body.classList.remove("menu--open");
-};
+  function closeMenu() {
+    document.body.classList.remove("menu--open");
+  }
   return (
     <nav>
       <div className="nav__container">
@@ -32,7 +32,7 @@ const closeMenu = () => {
           </button>
           <li className="nav__icon">
             <a href="/cart" className="nav__link">
-            <FontAwesomeIcon icon="shopping-cart" />
+              <FontAwesomeIcon icon="shopping-cart" />
             </a>
             <span className="cart__length">2</span>
           </li>
@@ -44,14 +44,18 @@ const closeMenu = () => {
           <ul className="menu__links">
             <li className="menu_list">
               <a href="/" className="menu__link">
-             Home
-             </a>
-             <a href="/books" className="menu__link">
-             Books
-             </a>
-             <a href="/cart" className="menu__link">
-             Cart
-             </a>
+                Home
+              </a>
+            </li>
+            <li className="menu_list">
+              <a href="/books" className="menu__link">
+                Books
+              </a>
+            </li>
+            <li className="menu_list">
+              <a href="/cart" className="menu__link">
+                Cart
+              </a>
             </li>
           </ul>
         </div>

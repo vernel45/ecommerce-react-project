@@ -198,6 +198,7 @@ button:active {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
 }
 
 .menu__list {
@@ -207,6 +208,7 @@ button:active {
 .menu__link {
   color: white;
   font-size: 40px;
+
 }
 
 .btn__menu--close {

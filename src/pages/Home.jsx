@@ -8,13 +8,11 @@ import Explore from "../components/Explore";
 const Home = () => {
   return (
     <>
-      <Landing />
-      <main>
+      <Landing />      
         <Highlights />
         <Features />
         <CheapestBooks />
-        <Explore />
-      </main>
+        <Explore />     
     </>
   );
 };
