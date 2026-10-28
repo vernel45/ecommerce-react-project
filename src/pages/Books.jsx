@@ -1,41 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Book from "../components/Book";
 
-const Books = ({ books: initalBooks }) => {
-  const [books, setBooks] = useState();
 
-  useEffect(() => {
-    setBooks(initalBooks);
-  }, [initalBooks]);
+const Books = ({ books }) => {
+  // const [books, setBooks] = useState();
 
-  function filterBooks(filter) {
-    switch (filter) {
-      case "LOW_TO_HIGH":
-        return setBooks(
-          books
-            .slice()
-            .sort(
-              (a, b) =>
-                (a.salePrice || a.originalPrice) -
-                (b.salePrice || b.originalPrice)
-            )
-        );
-      case "HIGH_TO_LOW":
-        return setBooks(
-          books
-            .slice()
-            .sort(
-              (a, b) =>
-                (b.salePrice || b.originalPrice) -
-                (a.salePrice || a.originalPrice)
-            )
-        );
-      case "RATING":
-        return setBooks(books.slice().sort((a, b) => b.rating - a.rating));
-      default:
-        break;
-    }
-  }
+  // useEffect(() => {
+  //   setBooks(initalBooks);
+  // }, [initalBooks]);
+
+  // function filterBooks(filter) {
+  //   switch (filter) {
+  //     case "LOW_TO_HIGH":
+  //       return setBooks(
+  //         books
+  //           .slice()
+  //           .sort(
+  //             (a, b) =>
+  //               (a.salePrice || a.originalPrice) -
+  //               (b.salePrice || b.originalPrice)
+  //           )
+  //       );
+  //     case "HIGH_TO_LOW":
+  //       return setBooks(
+  //         books
+  //           .slice()
+  //           .sort(
+  //             (a, b) =>
+  //               (b.salePrice || b.originalPrice) -
+  //               (a.salePrice || a.originalPrice)
+  //           )
+  //       );
+  //     case "RATING":
+  //       return setBooks(books.slice().sort((a, b) => b.rating - a.rating));
+  //     default:
+  //       break;
+  //   }
+  // }
 
   return (
     <div id="books__body">
