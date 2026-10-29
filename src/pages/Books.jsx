@@ -1,43 +1,23 @@
-import React from "react";
 import Book from "../components/Book";
-
+import React, { useState } from "react";
 
 const Books = ({ books }) => {
-  // const [books, setBooks] = useState();
+  const [sortBy, setSortBy] = useState("");
+  
+const sortedBooks = [...(books || [])].sort((a, b) => {
+    if (sortBy === "LOW_TO_HIGH") {
+      return (a.salePrice ?? a.originalPrice) - (b.salePrice ?? b.originalPrice);
+    }
+    if (sortBy === "HIGH_TO_LOW") {
+      return b.salePrice - a.salePrice;
+    }
+    if (sortBy === "RATING") {
+      return b.rating - a.rating;
+    }
+    return 0;
+  });
 
-  // useEffect(() => {
-  //   setBooks(initalBooks);
-  // }, [initalBooks]);
-
-  // function filterBooks(filter) {
-  //   switch (filter) {
-  //     case "LOW_TO_HIGH":
-  //       return setBooks(
-  //         books
-  //           .slice()
-  //           .sort(
-  //             (a, b) =>
-  //               (a.salePrice || a.originalPrice) -
-  //               (b.salePrice || b.originalPrice)
-  //           )
-  //       );
-  //     case "HIGH_TO_LOW":
-  //       return setBooks(
-  //         books
-  //           .slice()
-  //           .sort(
-  //             (a, b) =>
-  //               (b.salePrice || b.originalPrice) -
-  //               (a.salePrice || a.originalPrice)
-  //           )
-  //       );
-  //     case "RATING":
-  //       return setBooks(books.slice().sort((a, b) => b.rating - a.rating));
-  //     default:
-  //       break;
-  //   }
-  // }
-
+  
   return (
     <div id="books__body">
       <main id="books__main">
@@ -48,8 +28,12 @@ const Books = ({ books }) => {
                 <h2 className="section__title books__header--title">
                   All Books
                 </h2>
-                <select id="filter">
-                  <option value="" selected disabled>
+                <select
+                  id="filter"
+                  value={sortBy}
+                  onChange={(event) => setSortBy(event.target.value)}
+                >
+                  <option value="DEFAULT"  disabled>
                     Sort
                   </option>
                   <option value="LOW_TO_HIGH">Price, Low to High</option>
@@ -58,7 +42,7 @@ const Books = ({ books }) => {
                 </select>
               </div>
               <div className="books">
-                {books && books.map((book) => {
+                {sortedBooks.map((book) => {
                   return <Book book={book} key={book.id} />;
                 })}
               </div>
