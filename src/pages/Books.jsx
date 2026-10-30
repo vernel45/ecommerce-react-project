@@ -1,21 +1,28 @@
 import Book from "../components/Book";
 import React, { useState } from "react";
+import { Link } from "react-router-dom"
 
 const Books = ({ books }) => {
   const [sortBy, setSortBy] = useState("");
   
 const sortedBooks = [...(books || [])].sort((a, b) => {
-    if (sortBy === "LOW_TO_HIGH") {
-      return (a.salePrice ?? a.originalPrice) - (b.salePrice ?? b.originalPrice);
-    }
-    if (sortBy === "HIGH_TO_LOW") {
-      return b.salePrice - a.salePrice;
-    }
-    if (sortBy === "RATING") {
-      return b.rating - a.rating;
-    }
-    return 0;
-  });
+  const priceA = a.salePrice ?? a.originalPrice;
+  const priceB = b.salePrice ?? b.originalPrice;
+
+  if (sortBy === "LOW_TO_HIGH") {
+    return priceA - priceB;
+  }
+
+  if (sortBy === "HIGH_TO_LOW") {
+    return priceB - priceA;
+  }
+
+  if (sortBy === "RATING") {
+    return b.rating - a.rating;
+  }
+
+  return 0;
+});
 
   
   return (
