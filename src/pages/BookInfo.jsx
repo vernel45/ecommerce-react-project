@@ -9,7 +9,7 @@ import BestBooks from "../components/ui/BestBooks";
 
 const BookInfo = ({ books, addItemToCart }) => {
   const { id } = useParams();
-  const book = books.find((book) => +book.id === +id);
+  const book = books.find((book) => +book.id == +id);
 
   return (
     <div id="books__body">
@@ -17,10 +17,10 @@ const BookInfo = ({ books, addItemToCart }) => {
         <div className="books__container">
           <div className="row">
             <div className="book__selected--top">
-              <Link to=="/books" className="book__link">
+              <Link to="/books" className="book__link">
                 <FontAwesomeIcon icon="arrow-left" />
               </Link>
-              <Link to=="/books" className="book__link">
+              <Link to="/books" className="book__link">
                 <h2 className="book__selected--title--top">Books</h2>
               </Link>
             </div>

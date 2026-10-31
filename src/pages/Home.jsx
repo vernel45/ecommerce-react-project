@@ -5,7 +5,6 @@ import Features from "../components/Featured";
 import CheapestBooks from "../components/CheapestBooks";
 import Explore from "../components/Explore";
 import { Link } from "react-router-dom"
-
 const Home = () => {
   return (
     <>
