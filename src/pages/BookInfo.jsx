@@ -36,6 +36,9 @@ const BookInfo = ({ books, addItemToCart }) => {
                   Crack the coding interview{" "}
                 </h2>
                 <Ratings rating="4.5" />
+                <div className="book__selected--price">
+                  <Price originalPrice={50} />
+                </div>
               </div>
             </div>
           </div>
