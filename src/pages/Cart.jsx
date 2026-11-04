@@ -18,26 +18,27 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
                 <span className="cart__total">Price</span>
               </div>
               <div className="cart__body">
-                <div className="cart__item">
-                  <div className="car__book">
-                    <img
-                      src="https://m.media-amazon.com/images/I/61mIq2iJUXL._AC_UF1000,1000_QL80_.jpg"
-                      class="cart__book--img"
-                      alt=""
-                    />
-                    <div className="cart__book--info">
-                      <span className="cart__book--title">
-                        Crack the coding interview
-                      </span>
-                      <span className="cart__book--price">$10.00</span>
-                      <button className="cart__book--remove">Remove</button>
+                {cart.map((book) => (
+                  <div className="cart__item" key={book.id}>
+                    <div className="cart__book">
+                      <img
+                        src={book.url}
+                        className="cart__book--img"
+                        alt={book.title}
+                      />
+                      <div className="cart__book--info">
+                        <span className="cart__book--title">{book.title}</span>
+                        <span className="cart__book--price">${book.price}</span>
+                      </div>
+                    </div>
+
+                    <div className="cart__quantity">{book.quantity}</div>
+
+                    <div className="cart__total">
+                      ${book.price * book.quantity}
                     </div>
                   </div>
-                  <div className="cart__quantity">
-                    <input type="number" min={0} max={99} class="cart__input" />
-                  </div>
-                  <div className="cart__total">$10.00</div>
-                </div>
+                ))}
               </div>
             </div>
             <div className="total">
@@ -53,8 +54,10 @@ const Cart = ({ cart, updateCart, removeItem, totals }) => {
                 <span>Total</span>
                 <span>$10.00</span>
               </div>
-              <button className="btn btn__checkout no-cursor"
-              onClick={() => alert(`Haven't gotten around to doing this :(` )}>
+              <button
+                className="btn btn__checkout no-cursor"
+                onClick={() => alert(`Haven't gotten around to doing this :(`)}
+              >
                 Proceed to checkout
               </button>
             </div>

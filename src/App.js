@@ -32,8 +32,8 @@ function App() {
         <Nav />
         <Route exact path="/" component={Home} />
         <Route path="/books" exact render={() => <Books books={books} />} />
-        <Route path="/books/:id" render={() => <BookInfo books={books} addItemToCart={addToCart} />} />
-        <Route path="/cart" render={() => <Cart cart={cart} />} />
+        <Route path="/books/:id" render={() => <BookInfo books={books} addToCart={addToCart} />} />
+        <Route path="/cart" render={() => <Cart books={cart} />} />
         <Footer />
       </div>
     </Router>
