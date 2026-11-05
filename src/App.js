@@ -19,8 +19,18 @@ function App() {
   const [cart, setCart] = useState ([]);
   
   function addToCart (book) {
-    setCart([...cart, {...book, quantity: 1}])
-    
+    const dupeItem = cart.find(item => +item.id === +book.id)
+    if(dupeItem){
+            setCart(cart.map(item => {
+        if (item.id === dupeItem.id) {
+          return(
+            ...item,
+          quantity: item.quantity +1,
+          )
+        }
+      }))
+    } 
+     setCart([...cart, {...book, quantity: 1}])    
   }
 
   useEffect(() => {
@@ -33,7 +43,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/books" exact render={() => <Books books={books} />} />
         <Route path="/books/:id" render={() => <BookInfo books={books} addToCart={addToCart} />} />
-        <Route path="/cart" render={() => <Cart books={cart} />} />
+        <Route path="/cart" render={() => <Cart cart={cart} />} />
         <Footer />
       </div>
     </Router>
