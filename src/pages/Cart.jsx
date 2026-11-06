@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import EmptyCart from "../assets/empty_cart.svg";
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, changeQuantity }) => {
   const subtotal = cart.reduce((total, book) => {
     const price = book.salePrice ?? book.originalPrice;
     return total + price * book.quantity;
@@ -24,7 +24,7 @@ const Cart = ({ cart }) => {
                 <span className="cart__quantity">Quantity</span>
                 <span className="cart__total">Price</span>
               </div>
-              <div className="cart__body">
+              <div className="cart__body">                
                 {cart.map((book) => (
                   <div className="cart__item" key={book.id}>
                     <div className="cart__book">
@@ -42,6 +42,13 @@ const Cart = ({ cart }) => {
                     </div>
 
                     <div className="cart__quantity">{book.quantity}</div>
+                    <input
+                    type="number"
+                    min={0}
+                    max={99}
+                    className="cart__input"
+                    onChange={(event) => changeQuantity(book, event.target.value)}
+                    />
 
                     <div className="cart__total">
                       $

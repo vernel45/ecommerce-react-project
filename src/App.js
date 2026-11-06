@@ -17,10 +17,13 @@ import React, { useEffect, useState } from "react";
 function App() {
   const [cart, setCart] = useState([]);
 
-  function addToCart(book) {
-    setCart([...cart, book])
-    }
+   function addToCart(book) {
+    setCart([...cart, { ...book, quantity: 1 }])
+  }
 
+  function changeQuantity(book, quantity) {
+
+  }
   useEffect(() => {
     console.log(cart)
   }, [cart] )
@@ -35,7 +38,7 @@ function App() {
           path="/books/:id"
           render={() => <BookInfo books={books} addToCart={addToCart} cart={cart} />}
         />
-        <Route path="/cart" render={() => <Cart cart={cart} />} />
+        <Route path="/cart" render={() => <Cart cart={cart} changeQuantity={changeQuantity} />} />
         <Footer />
       </div>
     </Router>
