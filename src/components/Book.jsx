@@ -5,11 +5,14 @@ import Ratings from "../components/ui/Ratings";
 import Price from "./ui/Price";
 
 const Book = ({ book }) => {
+  function imageLoaded() {
+    console.log('image loaded');
+  }
   return (
     <div className="book">
       <Link to={`/books/${book.id}`}>
         <figure className="book__img--wrapper">
-          <img src={book.url} alt="" className="book__img" />
+          <img src={book.url} alt="" className="book__img" onLoad={imageLoaded} />
         </figure>
       </Link>
       <div className="book__title">
