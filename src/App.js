@@ -17,16 +17,29 @@ import React, { useEffect, useState } from "react";
 function App() {
   const [cart, setCart] = useState([]);
 
-   function addToCart(book) {
-    setCart([...cart, { ...book, quantity: 1 }])
+  function addToCart(book) {
+    setCart([...cart, { ...book, quantity: 1 }]);
   }
 
   function changeQuantity(book, quantity) {
+    setCart(cart.map(item => 
+       item.id === book.id
+        ? {
+          ...item,
+          quantity: +quantity,
+        }
+    : item
+      )
+    );
+  }
 
+  function removeItem(item) {
+    setCart(cart.filter(book => book.id !== item.id));
+  console.log(removeItem, item);
   }
   useEffect(() => {
-    console.log(cart)
-  }, [cart] )
+    console.log(cart);
+  }, [cart]);
 
   return (
     <Router>
@@ -36,14 +49,18 @@ function App() {
         <Route path="/books" exact render={() => <Books books={books} />} />
         <Route
           path="/books/:id"
-          render={() => <BookInfo books={books} addToCart={addToCart} cart={cart} />}
+          render={() => (
+            <BookInfo books={books} addToCart={addToCart} cart={cart} />
+          )}
         />
-        <Route path="/cart" render={() => <Cart cart={cart} changeQuantity={changeQuantity} />} />
+        <Route
+          path="/cart"
+          render={() => <Cart cart={cart} changeQuantity={changeQuantity} removeItem={removeItem} />}
+        />
         <Footer />
       </div>
     </Router>
   );
 }
-
 
 export default App;

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import EmptyCart from "../assets/empty_cart.svg";
 
-const Cart = ({ cart, changeQuantity }) => {
+const Cart = ({ cart, changeQuantity, removeItem }) => {
   const subtotal = cart.reduce((total, book) => {
     const price = book.salePrice ?? book.originalPrice;
     return total + price * book.quantity;
@@ -24,7 +24,7 @@ const Cart = ({ cart, changeQuantity }) => {
                 <span className="cart__quantity">Quantity</span>
                 <span className="cart__total">Price</span>
               </div>
-              <div className="cart__body">                
+              <div className="cart__body">
                 {cart.map((book) => (
                   <div className="cart__item" key={book.id}>
                     <div className="cart__book">
@@ -38,17 +38,27 @@ const Cart = ({ cart, changeQuantity }) => {
                         <span className="cart__book--price">
                           ${(book.salePrice ?? book.originalPrice).toFixed(2)}
                         </span>
+                        <button
+                          className="cart__book--remove"
+                          onClick={() => removeItem(book)}
+                        >
+                          Remove
+                        </button>
                       </div>
                     </div>
 
-                    <div className="cart__quantity">{book.quantity}</div>
-                    <input
-                    type="number"
-                    min={0}
-                    max={99}
-                    className="cart__input"
-                    onChange={(event) => changeQuantity(book, event.target.value)}
-                    />
+                    <div className="cart__quantity">
+                      <input
+                        type="number"
+                        min={0}
+                        max={99}
+                        value={book.quantity}
+                        className="cart__input"
+                        onChange={(event) =>
+                          changeQuantity(book, event.target.value)
+                        }
+                      />
+                    </div>
 
                     <div className="cart__total">
                       $
@@ -59,6 +69,11 @@ const Cart = ({ cart, changeQuantity }) => {
                   </div>
                 ))}
               </div>
+              <img src={EmptyCart} alt="" className="cart__empty" />
+              <h2>You don't have any books in your cart!</h2>
+              <Link to="/books">
+                <button className="btn">Browse books</button>
+              </Link>
             </div>
             <div className="total">
               <div className="total__item--total__sub-total">
