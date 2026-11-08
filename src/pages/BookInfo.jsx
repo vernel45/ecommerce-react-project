@@ -1,18 +1,17 @@
-import Cart from "./Cart"
-import React, {useState} from "react";
+
+import React from "react";
 import { useParams } from "react-router";
 import Ratings from "../components/ui/Ratings";
 import Price from "../components/ui/Price";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import BestBooks from "../components/ui/BestBooks";
+
 import Book from "../components/Book";
 
 const BookInfo = ({ books, addToCart, cart }) => {
   const { id } = useParams();
   const book = books.find((book) => +book.id === +id);
-  const [added] = useState(false);
-
+  
   function addBookToCart(book) {
   addToCart(book)
   }
