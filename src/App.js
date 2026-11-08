@@ -1,10 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Highlights from "./components/Highlights";
-import Landing from "./components/Landing";
 import Nav from "./components/Nav";
-import Featured from "./components/Featured";
-import Discounted from "./components/Discounted";
-import Explore from "./components/Explore";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -22,27 +16,28 @@ function App() {
   }
 
   function changeQuantity(book, quantity) {
-    setCart(cart.map(item => 
-       item.id === book.id
-        ? {
-          ...item,
-          quantity: +quantity,
-        }
-    : item
-      )
+    setCart(
+      cart.map((item) =>
+        item.id === book.id
+          ? {
+              ...item,
+              quantity: +quantity,
+            }
+          : item,
+      ),
     );
   }
 
   function removeItem(item) {
-    setCart(cart.filter(book => book.id !== item.id));
-  console.log(removeItem, item);
+    setCart(cart.filter((book) => book.id !== item.id));
+    console.log(removeItem, item);
   }
 
-function numberOfItems() {
-   let counter = 0;
-   cart.forEach(item => {
-    counter += item.quantity;
-   })
+  function numberOfItems() {
+    let counter = 0;
+    cart.forEach((item) => {
+      counter += item.quantity;
+    });
     return counter;
   }
 
@@ -64,7 +59,13 @@ function numberOfItems() {
         />
         <Route
           path="/cart"
-          render={() => <Cart cart={cart} changeQuantity={changeQuantity} removeItem={removeItem} />}
+          render={() => (
+            <Cart
+              cart={cart}
+              changeQuantity={changeQuantity}
+              removeItem={removeItem}
+            />
+          )}
         />
         <Footer />
       </div>
